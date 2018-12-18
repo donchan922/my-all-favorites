@@ -1,0 +1,13 @@
+<h1>Twitterいいね全件取得</h1>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<% if session[:nickname] %>
+  <p><%= "#{session[:nickname]}さん、こんにちは" %></p>
+<% end %>
+<%= button_to '認証', '/auth/twitter' %> 
+<% if @favorites.present? %>
+  <% @favorites.each do |favorite| %>
+    <p><%= favorite.text %></p>
+  <% end %>
+<% end %>
