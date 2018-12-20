@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'homes#index'
-  get '/homes', to: 'homes#index'
+  root 'users#index'
+  get '/users', to: 'users#index'
   get '/auth/:provider/callback', to: 'sessions#create'
 end

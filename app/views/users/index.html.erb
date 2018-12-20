@@ -1,0 +1,7 @@
+<h1>Twitterいいね全件取得</h1>
+<%= button_to '認証', '/auth/twitter' %> 
+<% if @users.present? %>
+  <% @users.each do |user| %>
+    <p><%= text_url_to_link(h(user.favorite)).html_safe %></p>
+  <% end %>
+<% end %>
