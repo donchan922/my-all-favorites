@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     begin
       favorites = client.get_all_favorites(uid.to_i)
     rescue Twitter::Error::TooManyRequests => error
-      redirect_to root_path, alert: 'エラーが発生しました。15分ほど時間を置いてから再実行してください。'
+      redirect_to root_path, alert: 'いいねの数が多すぎるため、表示できませんでした。'
     end
 
     # Twitterユーザ情報初期化
