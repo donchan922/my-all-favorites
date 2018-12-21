@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     uid = auth[:uid]
     session[:uid] = uid
-    User.where(uid: uid).delete_all
+
+    # Twitterクライアント生成
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV['API_KEY']
       config.consumer_secret     = ENV['API_SECRET']
@@ -17,18 +18,29 @@ class SessionsController < ApplicationController
       response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
     end
 
+    # いいね全件取得
     def client.get_all_favorites(user)
       collect_with_max_id do |max_id|
-	options = {count: 200}
-	options[:max_id] = max_id unless max_id.nil?
-	favorites(user, options)
+      	options = {count: 200}
+      	options[:max_id] = max_id unless max_id.nil?
+      	favorites(user, options)
       end
     end
 
-    favorites = client.get_all_favorites(uid.to_i)
+    begin
+      favorites = client.get_all_favorites(uid.to_i)
+    rescue Twitter::Error::TooManyRequests => error
+      redirect_to root_path, alert: 'エラーが発生しました。15分ほど時間を置いてから再実行してください。'
+    end
+
+    # Twitterユーザ情報初期化
+    User.where(uid: uid).delete_all
+
+    # いいね全件登録
     favorites.each do |favorite|
       User.create(uid: uid, favorite: favorite.text)
     end
+
     redirect_to root_path
   end
 end

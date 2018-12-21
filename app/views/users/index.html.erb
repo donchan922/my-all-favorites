@@ -1,7 +1,27 @@
-<h1>Twitterいいね全件取得</h1>
-<%= button_to '認証', '/auth/twitter' %> 
-<% if @users.present? %>
-  <% @users.each do |user| %>
-    <p><%= text_url_to_link(h(user.favorite)).html_safe %></p>
-  <% end %>
-<% end %>
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui text container">
+      <% if flash[:alert] %>
+        <div class="ui negative message">
+	        <div class="header">
+	          <%= flash[:alert] %>
+	        </div>
+        </div>
+      <% end %>
+      <h1 class="ui inverted header">
+        Twitterいいね全件取得
+      </h1>
+      <h3>ボタンをポチッと押すだけでTwitterのいいねを全件取得します。</h3>
+      <%= button_to 'はじめる', '/auth/twitter', class: "ui huge primary button" %>
+    </div>
+  </div>
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+          <p><%= text_url_to_link(h(user.favorite)).html_safe %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
