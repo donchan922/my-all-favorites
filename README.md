@@ -1,6 +1,9 @@
 # my-all-favorites
 ![2018-12-22 9 20 55](https://user-images.githubusercontent.com/31620041/50368326-eed54e00-05ca-11e9-8199-8e316f43db10.png)
 
+# Description
+This application displays all of your Twitter's favorites.
+
 ## Requirements
 This app requires the following:
 - [Twitter Developer Account](https://developer.twitter.com/).
