@@ -1,24 +1,34 @@
-# README
+# my-all-favorites
+![2018-12-22 9 20 55](https://user-images.githubusercontent.com/31620041/50368326-eed54e00-05ca-11e9-8199-8e316f43db10.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
+This app requires the following:
+- [Twitter Developer Account](https://developer.twitter.com/).
+- API key of Twitter App
+- API secret key of Twitter App
 
-Things you may want to cover:
+## Usage
+Clone this repository.
+```bash
+$ git clone https://github.com/donchan922/my-all-favorites.git
+```
+Execute following command:
+```
+$ bundle install
+$ rails db:migrate
+```
 
-* Ruby version
+Setting following file:
+```
+$ vi .env
+API_KEY = YOUR_APP_KEY
+API_SECRET = YOUR_API_SECRET
+```
 
-* System dependencies
+Run following command:
+```
+$ rails server
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
+This software is released under the MIT License, see LICENSE.
